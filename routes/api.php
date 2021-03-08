@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,7 +23,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'auth'], function () {
     Route::post('signup','AuthController@signup');
-    Route::post('login','AuthController@login');   
+    Route::post('login','AuthController@login'); 
+    
+    
+
+});
+Route::prefix('doctor/schedule/')->group(function () {
+    Route::get('show','doctor\scheduleController@show')->middleware('auth:api');
+    Route::get('add','doctor\scheduleAdminController@add');
+    Route::get('edit/{id}','doctor\scheduleAdminController@edit');
+    Route::get('delete/{id}','doctor\scheduleAdminController@delete');
+
 });
 
 Route::group(['middleware' => 'auth:api'], function () {

@@ -11,6 +11,25 @@ use Laravel\Passport\HasApiTokens;
 class User extends Authenticatable
 {
     use Notifiable,HasApiTokens;
+   //Relations
+    public function categoty()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
+    public function bookings()
+    {
+        return $this->hasMany('App\Booking');
+    }
+    public function matrials()
+    {
+        return $this->belongsToMany('App\Matrial');
+    }
+    public function role()
+    {
+        return $this->belongsTo('App\Role');
+    }
+
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +37,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role_id','category_id',
     ];
 
     /**
