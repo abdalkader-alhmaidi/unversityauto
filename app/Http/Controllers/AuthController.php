@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth ;
 use App\User ;
 use App\Traits\ApiResponser ;
+use Laravel\Passport\Passport;
+
 
 class AuthController extends Controller
 {
@@ -15,12 +17,15 @@ class AuthController extends Controller
     public  function signup(Request $request){
         $attrr = $this->validateSignup($request);
   
-    $user = User::create([
+     User::create([
        
         'name' => $attrr['name'],
         'email' => $attrr['email'],
         'password' => bcrypt($attrr['password']),
+      //  'role_id' => $attrr['role_id'],
+       // 'category_id' => $attrr['category_id'],
     ]);
+    
       // check (user exist) if exists return true and create session user
     Auth::attempt(['email' => $attrr['email'], 'password' => $attrr['password']]);
      
@@ -54,11 +59,14 @@ class AuthController extends Controller
 
     public function getPersonalAccessToken()
     {
-        if (request()->remember_me === 'true')
+        if (request()->remember_me === 'true'){
             //for determine livetime token
-            Passport::personalAccessTokensExpireIn(now()->addDays(15));
-
+           // Passport::personalAccessTokensExpireIn(now()->addDays(15));
+           //$u =Auth::user();
+           //echo $u;
+          // dd();
         return Auth::user()->createToken('Personal Access Token');
+        }
     
     }
 
@@ -82,6 +90,8 @@ class AuthController extends Controller
                 'name'=> 'required',
                 'email'=> 'required|email|unique:users',
                 'password'=> 'required|min:6',
+               // 'role_id'=> 'required',
+               // 'category_id'=> 'required',
             ]
         );
      }
