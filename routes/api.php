@@ -69,12 +69,18 @@ Route::group(['prefix' => 'admin/Dashboard/'], function () {
         Route::post('index/{cat}/{year}/students/import/all','admin\studentController@importStudentByExcel');
         //export student file
         Route::get('index/{cat}/{year}/students/export/all','admin\studentController@exportStudentByExcel');
+    });
+    Route::group(['prefix' => 'doctors/'], function () {
+        Route::get('index','admin\doctorController@index');
+        Route::post('index/doctor/add','admin\doctorController@addDoctor');
+        Route::delete('index/{id}/delete','admin\doctorController@deleteDoctor');
+        Route::put('index/{id}/edit','admin\doctorController@editDoctor');
+        Route::post('index/doctor/{id}/add','admin\doctorController@addDoctorMatrial');
+        Route::delete('index/doctor/{id}/delete','admin\doctorController@deleteDoctorMatrail');
 
-
-
-
-
+        
 
     });
+    
 
 });
