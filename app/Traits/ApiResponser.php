@@ -20,7 +20,7 @@ protected function token($personlAccessToken,$message=null,$code=200){
     return $this->success($tokenData,$message,$code);
 }
 
-protected function success ($data,$message=null,$code=200){
+public function success ($data,$message=null,$code=200){
 
     return response()->json(
         [

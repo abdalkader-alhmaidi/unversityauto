@@ -24,9 +24,13 @@ class DatabaseSeeder extends Seeder
          factory(Matrial::class,5)->create();
          factory(Role::class,1)->create();
          factory(Role::class)->create(['name'=>'doctor']);
+         factory(Role::class)->create(['name'=>'admin']);
+         factory(Role::class)->create(['name'=>'Group admin']);
         factory(User::class,20)->create();
         
           factory(Booking::class,4)->create();
+
+
           $users = factory(App\User::class, 3)
            ->create()
            ->each(function ($user) {
