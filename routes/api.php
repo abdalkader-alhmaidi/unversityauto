@@ -41,3 +41,40 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('logout','AuthController@logout');  
 
 });
+
+
+
+Route::group(['prefix' => 'admin/Dashboard/'], function () {
+    Route::post('','AuthController@signup');
+    Route::post('','AuthController@login'); 
+
+
+    Route::group(['prefix' => 'students/'], function () {
+         //show categories
+        Route::get('index','admin\studentController@index');
+         //show the years for the specfic category 
+        Route::get('index/{cat}','admin\studentController@years'); 
+        //show the students for the specific year
+        Route::get('index/{cat}/{year}','admin\studentController@students'); 
+        //add  a student
+        Route::post('index/{cat}/{year}/addstudent','admin\studentController@addStudent');
+        //remove a student
+        Route::delete('index/student/{id}/delete','admin\studentController@deleteStudent');
+        //edit a student
+        Route::put('index/student/{id}/edit','admin\studentController@editStudent');
+        
+        //remove all students in this category
+        Route::delete('index/students/{cat}/{year}/delete','admin\studentController@deleteStudents');
+        //add a set of students by the excel file [import]
+        Route::post('index/{cat}/{year}/students/import/all','admin\studentController@importStudentByExcel');
+        //export student file
+        Route::get('index/{cat}/{year}/students/export/all','admin\studentController@exportStudentByExcel');
+
+
+
+
+
+
+    });
+
+});

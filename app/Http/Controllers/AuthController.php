@@ -15,6 +15,7 @@ class AuthController extends Controller
     use ApiResponser ;
      //note:the used function from triat apiresponser
     public  function signup(Request $request){
+        
         $attrr = $this->validateSignup($request);
   
      User::create([

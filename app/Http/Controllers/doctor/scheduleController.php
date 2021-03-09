@@ -16,8 +16,9 @@ class scheduleController extends Controller
       
       //  echo $u ;
        // dd();
+             
         return response()->json($bookings, 200);
-    
+       
       }
       
 }

@@ -28,7 +28,8 @@ class CreateBookingsTable extends Migration
             $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('matrial_id')->references('id')->on('matrials');
             $table->foreign('room_id')->references('id')->on('rooms');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+         
             
         });
     }
