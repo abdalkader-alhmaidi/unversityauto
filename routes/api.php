@@ -81,6 +81,24 @@ Route::group(['prefix' => 'admin/Dashboard/'], function () {
         
 
     });
-    
+
+    Route::group(['prefix' => 'rooms/'], function () {
+        Route::get('index','admin\roomsController@index');
+        Route::post('index/add','admin\roomsController@addRooms');
+        Route::delete('index/{id}/delete','admin\roomsController@deleteRooms');
+        Route::put('index/{id}/edit','admin\roomsController@editRooms');
+
+
+    });
+    Route::group(['prefix' => 'categories/'], function () {
+        Route::get('index','admin\categoryController@index');
+        Route::post('index/add','admin\categoryController@addCategory');
+        Route::delete('index/{id}/delete','admin\categoryController@deleteCategory');
+        Route::put('index/{id}/edit','admin\categoryController@editCategory');
+
+
+    });
+
+
 
 });
