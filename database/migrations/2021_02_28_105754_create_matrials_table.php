@@ -16,11 +16,13 @@ class CreateMatrialsTable extends Migration
         Schema::create('matrials', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->nullable()->default('text');
-            $table->bigInteger('category_id')->unsigned();
+         //   $table->string('catId');
+            $table->integer('term')->default(1);
+           
             
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories');
+           // $table->foreign('catId')->references('catId')->on('categories');
 
         });
     }

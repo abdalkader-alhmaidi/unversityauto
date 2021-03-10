@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRoomsTable extends Migration
+class CreatePivotCategoryMatrialTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateRoomsTable extends Migration
      */
     public function up()
     {
-        Schema::create('rooms', function (Blueprint $table) {
+        Schema::create('category_matrial', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100)->nullable()->default('text');
-            $table->integer('capacity')->unsigned()->nullable()->default(100);
-            $table->bigInteger('category_id')->nullable()->unsigned();
-            
+            $table->bigInteger('category_id')->unsigned();
+            $table->bigInteger('matrial_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('matrial_id')->references('id')->on('matrials');
+
         });
     }
 
@@ -32,6 +32,6 @@ class CreateRoomsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rooms');
+        Schema::dropIfExists('pivot_category_matrial');
     }
 }
