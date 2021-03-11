@@ -98,6 +98,14 @@ Route::group(['prefix' => 'admin/Dashboard/'], function () {
 
 
     });
+    Route::group(['prefix' => 'advertisments/'], function () {
+        Route::get('index','admin\advertismentController@index');
+        Route::post('index/add','admin\advertismentController@adddAvertisment');
+        Route::delete('index/{id}/delete','admin\advertismentController@deleteAdvertisment');
+        Route::put('index/{id}/edit','admin\advertismentController@editAdvertisment');
+
+
+    });
 
 
 

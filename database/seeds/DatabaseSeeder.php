@@ -5,6 +5,7 @@ use App\Matrial;
 use App\User;
 use App\Role;
 use App\Booking;
+use App\Advertisment;
 
 use Illuminate\Database\Seeder;
 
@@ -27,6 +28,7 @@ class DatabaseSeeder extends Seeder
          factory(Role::class)->create(['name'=>'admin']);
          factory(Role::class)->create(['name'=>'Group admin']);
         factory(User::class,20)->create();
+        factory(Advertisment::class,10)->create();
         
           factory(Booking::class,4)->create();
 
