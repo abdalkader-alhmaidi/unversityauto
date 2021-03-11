@@ -19,9 +19,8 @@ class CreateBookingsTable extends Migration
             $table->bigInteger('room_id')->unsigned();
             $table->bigInteger('matrial_id')->unsigned();
             $table->bigInteger('category_id')->unsigned();
-            $table->time('start')->default(now());
-            $table->time('end')->default(now());
-  
+            $table->integer('lecture')->unsigned()->nullable();
+            $table->string('day', 100)->default('sunday');
             
             $table->timestamps();
 
