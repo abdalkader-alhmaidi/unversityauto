@@ -44,9 +44,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 
 
-Route::group(['prefix' => 'admin/Dashboard/'], function () {
-    Route::post('','AuthController@signup');
-    Route::post('','AuthController@login'); 
+Route::group(['prefix' => 'admin/Dashboard/','middleware'=>['auth:api','admin']], function () {
 
 
     Route::group(['prefix' => 'students/'], function () {
@@ -107,7 +105,12 @@ Route::group(['prefix' => 'admin/Dashboard/'], function () {
 
 
     });
+    Route::group(['prefix' => 'advertisments/'], function () {
+        Route::get('index','admin\advertismentController@index');
+        Route::post('index/add','admin\advertismentController@adddAvertisment');
+        Route::delete('index/{id}/delete','admin\advertismentController@deleteAdvertisment');
+        Route::put('index/{id}/edit','admin\advertismentController@editAdvertisment');
 
-
+    });
 
 });

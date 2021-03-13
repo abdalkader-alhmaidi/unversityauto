@@ -11,6 +11,8 @@ use App\Role;
 use App\User ;
 use App\Traits\ApiResponser ;
 use Carbon\Carbon ;
+use Illuminate\Support\Facades\Auth ;
+
 
 
 
@@ -25,15 +27,13 @@ class advertismentController extends Controller
     }
 
     public function adddAvertisment(Request $request){
-        $roleId = Role::where('name','admin')->first()->id;
-        $userId = User::where('role_id',$roleId)->first()->id;
         $request = $this->advertismentValidate($request);
          $adver= Advertisment::create([
         'title'=>$request['title'] ,
         'content'=>$request['content'] ,
         'period'=>$request['period'] ,
         'slice'=>implode(',',$request['slice']) ,
-        'user_id'=> $userId,
+        'user_id'=> Auth::id(),
         
         
      ]);

@@ -32,8 +32,6 @@ class categoryController extends Controller
     }
     public function  editCategory($id,Request $request){
      $category = Category::where('id',$id)->first();
-    // var_dump($request);
-    // dd();
      $category->update($request->all());
      return  $this->success([],'edit category success',200);
 
