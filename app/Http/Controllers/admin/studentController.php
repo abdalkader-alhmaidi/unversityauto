@@ -33,8 +33,6 @@ class studentController extends Controller
         return  $this->success($cat,'categories',200);
     }
     public function years($cat){
-       // $name = Category::where('id',$cat)->get();
-        //$name= $name[0]->name;
         $years = Category::select('year')->where('name',$cat)->get();
         $years = $years->toArray();
 
@@ -58,8 +56,6 @@ class studentController extends Controller
 
 
     public function addStudent($cat,$year,Request $request){
-        $role = Role::where('name','student')->first();
-        $role =  $role->id ;
         $cat = Category::where('name',$cat)->where('year',$year)->first()->id;
         $request = $this->vailateAddStudent($request);
         $user= User::create([
@@ -67,7 +63,7 @@ class studentController extends Controller
              'name'=>$request['name'] , 
              'email'=> $request['email'],
              'password'=> bcrypt($request['password']),
-             'role_id'=> $role ,
+             'role_id'=> 'student' ,
              'category_id'=>$cat ,
               ]);
         return  $this->success($user,'add student',200);
@@ -115,8 +111,6 @@ class studentController extends Controller
 
     
     public function deleteStudents($cat,$year){
-        //$name = Category::where('id',$cat)->first();
-        //$name= $name->name;
         $students = Category::where('name',$cat)->where('year',$year)->get();
          $students  ;
          foreach ($students as  $student) {

@@ -16,23 +16,19 @@ class doctorController extends Controller
     use ApiResponser;
 
     public function index(){
-      $roleIdDoctor = Role::where('name','doctor')->first()->id;
-      $doctors = User::where('role_id',$roleIdDoctor)->get(['id','name','email']);
+      $doctors = User::where('role_id','doctor')->get(['id','name','email']);
 
         return  $this->success($doctors,'doctors',200);
     }
 
     public function addDoctor(Request $request){
-        $roleIdDoctor = Role::where('name','doctor')->first()->id;
-        
-        
         $request = $this->vailateAddDoctor($request);
         $user= User::create([
            //  'id_student'=> $request['id_student'] ,
              'name'=>$request['name'] , 
              'email'=> $request['email'],
              'password'=> bcrypt($request['password']),
-             'role_id'=> $roleIdDoctor ,
+             'role_id'=> 'doctor' ,
              'category_id'=> 1,
               ]);
         return  $this->success($user,'add doctor',200);
