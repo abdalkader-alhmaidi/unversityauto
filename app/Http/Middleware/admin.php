@@ -21,7 +21,7 @@ class admin
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()->name == 'admin'){
+        if(Auth::user()->role_id == 'admin'){
         return $next($request); }
         return $this->success('','You don\'t have access privileges',);
 
