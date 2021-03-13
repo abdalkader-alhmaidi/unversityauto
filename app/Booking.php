@@ -18,5 +18,6 @@ class Booking extends Model
     {
         return $this->belongsTo('App\Category');
     }
+    protected $fillable = ['user_id','category_id','room_id','lecture','day','matrial_id'];
 
 }
